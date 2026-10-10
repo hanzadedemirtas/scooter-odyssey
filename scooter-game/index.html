@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fffaf4">
+    <title>Scooter Odyssey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HOME SCREEN -->
+    <section id="screen-home" class="screen">
+        <main class="home-card">
+            <h1 class="main-title">SCOOTER ODYSSEY</h1>
+            <p class="subtitle">One scooter. One wild ride.</p>
+
+            <div class="home-illustration">
+                <canvas id="home-canvas" width="400" height="220"></canvas>
+            </div>
+
+            <button type="button" id="btn-home-create"
+                    class="primary-action-btn full-btn">
+                CREATE YOUR RIDER →
+            </button>
+
+            <button type="button" id="btn-home-default"
+                    class="secondary-action-btn full-btn">
+                USE DEFAULT CHARACTER
+            </button>
+        </main>
+    </section>
+
+
+    <!-- CHARACTER CREATION -->
+    <section id="screen-character" class="screen hidden">
+        <main id="character-creation-container">
+
+            <header class="customizer-header">
+                <span class="arcade-badge">MAKE IT YOURS</span>
+                <h1 class="main-title">CREATE YOUR RIDER</h1>
+                <p class="subtitle">
+                    Choose your rider and color. Then prepare for chaos.
+                </p>
+            </header>
+
+            <div class="customizer-content">
+
+                <section class="preview-panel">
+                    <div class="preview-stage-wrapper">
+                        <canvas id="preview-canvas"
+                                width="400" height="400"></canvas>
+                    </div>
+
+                </section>
+
+                <section class="options-panel">
+
+                    <div class="option-group">
+                        <h2 class="group-label">01 / CHOOSE YOUR RIDER</h2>
+
+                        <div class="button-toggle-grid">
+                            <button type="button"
+                                    class="select-btn active"
+                                    data-gender="female">
+                                <span class="btn-emoji">♀</span>
+                                <span class="btn-text">Female</span>
+                            </button>
+
+                            <button type="button"
+                                    class="select-btn"
+                                    data-gender="male">
+                                <span class="btn-emoji">♂</span>
+                                <span class="btn-text">Male</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <h2 class="group-label">02 / SCOOTER COLOR</h2>
+
+                        <div class="color-palette-row">
+                            <button type="button" class="color-dot active"
+                                    data-color="#ff5ca8"
+                                    style="--dot-color:#ff5ca8"
+                                    aria-label="Pink"></button>
+
+                            <button type="button" class="color-dot"
+                                    data-color="#9b7bff"
+                                    style="--dot-color:#9b7bff"
+                                    aria-label="Purple"></button>
+
+                            <button type="button" class="color-dot"
+                                    data-color="#58c7ff"
+                                    style="--dot-color:#58c7ff"
+                                    aria-label="Blue"></button>
+
+                            <button type="button" class="color-dot"
+                                    data-color="#6ed6a3"
+                                    style="--dot-color:#6ed6a3"
+                                    aria-label="Green"></button>
+
+                            <button type="button" class="color-dot"
+                                    data-color="#ffbd59"
+                                    style="--dot-color:#ffbd59"
+                                    aria-label="Orange"></button>
+
+                            <button type="button" class="color-dot"
+                                    data-color="#f4f0e8"
+                                    style="--dot-color:#f4f0e8"
+                                    aria-label="White"></button>
+                        </div>
+                    </div>
+
+                    <footer class="customizer-footer">
+                        <button type="button" id="btn-back-home"
+                                class="secondary-action-btn">
+                            ← BACK
+                        </button>
+
+                        <button type="button" id="btn-create-character"
+                                class="primary-action-btn">
+                            LET'S RIDE →
+                        </button>
+                    </footer>
+
+                </section>
+            </div>
+        </main>
+    </section>
+
+
+    <!-- DEFAULT CHARACTER MEME -->
+    <div id="modal-default-meme" class="modal-overlay hidden">
+        <div class="modal-card">
+            <span class="arcade-badge">THE CLASSIC RIDER</span>
+
+            <div class="meme-image-container">
+                <img src="resimler/default-character-meme.png"
+                     alt="Default character meme">
+            </div>
+
+            <p>Some legends need no customization.</p>
+
+            <button type="button" id="btn-confirm-default-meme"
+                    class="primary-action-btn full-btn">
+                USE THIS CHARACTER →
+            </button>
+
+            <button type="button" id="btn-default-back"
+                    class="secondary-action-btn full-btn">
+                GO BACK
+            </button>
+        </div>
+    </div>
+
+
+    <!-- INTRO VIDEO AND MISSION INSTRUCTIONS -->
+    <section id="screen-intro-video" class="screen hidden">
+        <div class="cinematic-video-wrapper">
+
+            <div class="video-player-box">
+                <video id="video-intro" playsinline preload="metadata">
+                    <source src="videolar/scooter-intro.mp4"
+                            type="video/mp4">
+                </video>
+
+                <button type="button" id="btn-skip-intro"
+                        class="skip-btn">
+                    SKIP →
+                </button>
+            </div>
+
+            <div id="intro-ready-card" class="ready-card-modal">
+                <span class="arcade-badge">MISSION START</span>
+                <h2 class="ready-title">READY TO RIDE?</h2>
+
+                <p class="ready-controls-hint">
+                    Avoid obstacles. Collect gold. Find the treasure.
+                </p>
+
+                <div class="hint-item">
+                    <span class="hint-key">SPACE / ↑ / W</span>
+                    <span>JUMP</span>
+                </div>
+
+                <div class="hint-item">
+                    <span class="hint-key">↓ / S</span>
+                    <span>DUCK</span>
+                </div>
+
+                <button type="button" id="btn-start-game"
+                        class="primary-action-btn">
+                    START GAME →
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- MAIN GAME -->
+    <section id="screen-game" class="screen hidden">
+
+        <header class="game-hud">
+            <div class="hud-brand">
+                <span class="arcade-badge">SCOOTER ODYSSEY</span>
+            </div>
+
+            <button type="button" id="btn-pause-toggle"
+                    class="pause-button">
+                PAUSE
+            </button>
+        </header>
+
+        <div class="game-stage">
+            <canvas id="game-canvas" width="1000" height="600"></canvas>
+
+            <div class="route-progress-container">
+                <div class="route-progress-track">
+                    <div id="route-progress-bar"
+                         class="route-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOUCH CONTROLS -->
+        <div class="touch-controls">
+            <button type="button" id="touch-jump"
+                    class="touch-control-btn">
+                ↑ JUMP
+            </button>
+
+            <button type="button" id="touch-duck"
+                    class="touch-control-btn">
+                ↓ DUCK
+            </button>
+        </div>
+
+    </section>
+
+
+    <!-- PAUSE MENU -->
+    <div id="modal-pause" class="modal-overlay hidden">
+        <div class="modal-card">
+            <span class="arcade-badge">TAKE A BREAK</span>
+            <h2 class="ending-title">RIDE PAUSED</h2>
+            <p>Your adventure is waiting for you.</p>
+
+            <button type="button" id="btn-resume-game"
+                    class="primary-action-btn full-btn">
+                RESUME RIDE →
+            </button>
+
+            <button type="button" id="btn-pause-quit"
+                    class="secondary-action-btn full-btn">
+                MAIN MENU
+            </button>
+        </div>
+    </div>
+
+
+    <!-- CRASH MENU -->
+    <div id="modal-crash" class="modal-overlay hidden">
+        <div class="modal-card">
+            <span class="arcade-badge">OOPS!</span>
+            <h2 class="ending-title">WATCH OUT!</h2>
+            <p>You hit an obstacle. Get back on your scooter!</p>
+
+            <button type="button" id="btn-continue-crash"
+                    class="primary-action-btn full-btn">
+                KEEP RIDING →
+            </button>
+
+            <button type="button" id="btn-crash-quit"
+                    class="secondary-action-btn full-btn">
+                MAIN MENU
+            </button>
+        </div>
+    </div>
+
+
+    <!-- TREASURE VIDEO EVENT -->
+    <div id="modal-event-video" class="modal-overlay hidden">
+        <div class="modal-card clean-media-modal">
+            <span class="arcade-badge">TREASURE FOUND!</span>
+
+            <div class="video-player-box">
+                <video id="video-event" playsinline preload="metadata"
+                       controls>
+                </video>
+            </div>
+
+            <button type="button" id="btn-skip-event-video"
+                    class="primary-action-btn full-btn">
+                SKIP VIDEO →
+            </button>
+        </div>
+    </div>
+
+
+    <!-- DOG VIDEO EVENT -->
+    <div id="modal-dog-video" class="modal-overlay hidden">
+        <div class="modal-card clean-media-modal">
+            <div class="video-player-box">
+                <video id="video-dog" playsinline preload="metadata"
+                       controls>
+                </video>
+            </div>
+
+            <button type="button" id="btn-close-dog-video"
+                    class="primary-action-btn full-btn">
+                BACK TO THE RIDE →
+            </button>
+        </div>
+    </div>
+
+
+    <!-- SECRET SOCK MEME -->
+    <div id="modal-sock-secret" class="modal-overlay hidden">
+        <div class="modal-card">
+            <span class="arcade-badge">SECRET ITEM FOUND</span>
+            <h2 class="ending-title">THE LEGENDARY SOCK</h2>
+
+            <div class="meme-image-container">
+                <img id="img-sock-meme"
+                     src="resimler/babet-corap-meme.png"
+                     alt="Sock meme">
+            </div>
+
+            <button type="button" id="btn-confirm-sock"
+                    class="primary-action-btn full-btn">
+                BACK TO THE RIDE →
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ENDING SCREEN -->
+    <section id="screen-ending" class="screen hidden">
+        <div class="ending-container">
+
+            <div id="ending-wait-card" class="ending-card">
+                <span class="arcade-badge">ODYSSEY COMPLETE</span>
+                <h2 class="ending-title">YOU MADE IT.</h2>
+                <p>Your ride isn't over just yet...</p>
+            </div>
+
+            <div id="ending-video-card" class="ending-card hidden">
+                <div class="video-player-box">
+                    <video id="video-final" playsinline preload="metadata">
+                        <source src="videolar/final-yakup.mp4"
+                                type="video/mp4">
+                    </video>
+
+                    <button type="button" id="btn-skip-final-video"
+                            class="skip-btn">
+                        SKIP →
+                    </button>
+                </div>
+            </div>
+
+            <div id="ending-victory-card" class="ending-card hidden">
+                <span class="arcade-badge">THANKS FOR PLAYING</span>
+                <h1 class="victory-title">YOU SURVIVED.</h1>
+
+                <div class="ending-buttons-row">
+                    <button type="button" id="btn-play-again"
+                            class="primary-action-btn">
+                        PLAY AGAIN →
+                    </button>
+
+                    <button type="button" id="btn-main-menu"
+                            class="secondary-action-btn">
+                        MAIN MENU
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
